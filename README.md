@@ -1,4 +1,4 @@
-# Deploying Gitea on Kubernetes
+# Deploying Filebrowser Quantum on Kubernetes
 
 This repository contains a set of Kubernetes manifests for deploying [Filebrowser Quantum](https://github.com/gtsteffaniak/filebrowser).
 
