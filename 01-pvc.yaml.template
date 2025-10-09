@@ -1,0 +1,10 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: filebrowser-data-pvc
+  namespace: filebrowser
+spec:
+  storageClassName: hostpath-sc # <-- Add your own storage class or remove the line
+  accessModes: [ReadWriteOnce]
+  resources: { requests: { storage: 1Gi } }

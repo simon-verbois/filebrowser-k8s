@@ -1,0 +1,58 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: filebrowser-deployment
+  namespace: filebrowser
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: filebrowser
+  template:
+    metadata:
+      labels:
+        app: filebrowser
+    spec:
+      securityContext:
+        fsGroup: 1003 # <-- Add your own user GID
+        sysctls:
+          - name: net.ipv4.ip_unprivileged_port_start
+            value: "0"
+      containers:
+      - name: app
+        image: gtstef/filebrowser:latest
+        envFrom:
+        - configMapRef:
+            name: filebrowser-configmap
+        - secretRef:
+            name: filebrowser-secret
+        ports:
+        - containerPort: 80
+          name: http
+        volumeMounts:
+        - name: filebrowser-data
+          mountPath: /home/filebrowser/data
+        - name: filebrowser-config
+          mountPath: /home/filebrowser/data/config.yaml
+        - name: media
+          mountPath: /home/filebrowser/media
+        - name: disk1
+          mountPath: /home/filebrowser/disk1
+
+      volumes:
+      - name: filebrowser-data
+        persistentVolumeClaim:
+          claimName: filebrowser-data-pvc
+      - name: filebrowser-config
+        hostPath:
+          path: /path/to/k8s/manifest/filebrowser-k8s/config/config.yaml # <-- Change this path to match your cloned repo location
+          type: File
+      - name: media
+        hostPath:
+          path: /data/md0/media
+          type: Directory
+      - name: disk1
+        hostPath:
+          path: /data/disk1
+          type: Directory

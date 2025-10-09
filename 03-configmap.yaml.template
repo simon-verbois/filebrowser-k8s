@@ -1,0 +1,9 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: filebrowser-configmap
+  namespace: filebrowser
+data:
+  FILEBROWSER_CONFIG: "/home/filebrowser/data/config.yaml"
+  TZ: "Europe/Paris" # <-- Add your own TZ
