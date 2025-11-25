@@ -6,4 +6,100 @@ metadata:
   namespace: filebrowser
 data:
   FILEBROWSER_CONFIG: "/home/filebrowser/data/config.yaml"
-  TZ: "Europe/Paris" # <-- Add your own TZ
+  TZ: "Europe/Paris" # Add your own timezone
+
+  config.yaml: |-
+    server:
+      numImageProcessors: 4
+      socket: ""
+      tlsKey: ""
+      tlsCert: ""
+      disablePreviews: false
+      disablePreviewResize: false
+      disableTypeDetectionByHeader: false
+      port: 80
+      baseURL: "/"
+      logging:
+        - levels: ""
+          apiLevels: ""
+          output: "stdout"
+          noColors: false
+          json: false
+          utc: false
+            #debugMedia: false
+      database: "/home/filebrowser/data/database.db"
+      sources:
+        - path: "/home/filebrowser/mnt/disk1"
+          name: "Disk 1"
+          config:
+            defaultEnabled: true
+      externalUrl: ""
+      internalUrl: ""
+      cacheDir: "data/tmp"
+      maxArchiveSize: 50
+
+    auth:
+      methods:
+        password:
+          enabled: true
+      tokenExpirationHours: 2
+      key: ""
+      adminUsername: "admin"
+      adminPassword: "a_random_strong_password" # Change this password by your default admin pass
+      totpSecret: ""
+
+    frontend:
+      name: "FileBrowser Quantum"
+      disableDefaultLinks: false
+      disableUsedPercentage: false
+      disableNavButtons: false
+
+    userDefaults:
+      editorQuickSave: false
+      hideSidebarFileActions: false
+      disableQuickToggles: false
+      disableSearchOptions: false
+      stickySidebar: true
+      darkMode: true
+      locale: "en"
+      viewMode: "normal"
+      singleClick: false
+      showHidden: false
+      dateFormat: false
+      gallerySize: 3
+      themeColor: "var(--blue)"
+      quickDownload: false
+      disableOnlyOfficeExt: ".txt .csv .html .pdf"
+      disableOfficePreviewExt: ""
+      lockPassword: false
+      disableSettings: false
+      preview:
+        disableHideSidebar: false
+        highQuality: false
+        image: false
+        video: false
+        motionVideoPreview: false
+        office: false
+        popup: false
+        autoplayMedia: false
+      permissions:
+        api: false
+        admin: false
+        modify: true
+        share: true
+        realtime: false
+      loginMethod: "password"
+      disableUpdateNotifications: false
+      deleteWithoutConfirming: false
+      fileLoading:
+        maxConcurrentUpload: 10
+        uploadChunkSizeMb: 10
+
+    integrations:
+      office:
+        url: ""
+        internalUrl: ""
+        secret: ""
+      media:
+        ffmpegPath: ""
+
