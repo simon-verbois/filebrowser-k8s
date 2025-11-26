@@ -10,7 +10,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`file.domain.org`)
+    - match: Host(`file.example.org`)
       kind: Rule
       services:
         - name: filebrowser-service
@@ -26,7 +26,7 @@ spec:
   tls:
     certResolver: ovhresolver
     domains:
-      - main: "file.domain.org"
+      - main: "file.example.org"
     options:
       name: tls-profile
       namespace: traefik
@@ -41,7 +41,7 @@ spec:
 #    traefik.ingress.kubernetes.io/router.tls.certresolver: ovhresolver
 #spec:
 #  rules:
-#  - host: "file.domain.org"
+#  - host: "file.example.org"
 #    http:
 #      paths:
 #      - path: /
@@ -53,4 +53,4 @@ spec:
 #              name: http
 #  tls:
 #  - hosts:
-#    - "file.domain.org"
+#    - "file.example.org"
